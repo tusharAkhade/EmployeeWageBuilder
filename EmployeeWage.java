@@ -2,8 +2,8 @@ public class EmployeeWage
 {
 	public static void main(String args[])
 	{
-		Demo d = new Demo();
-		d.employeeWage();	
+		EmployeeWage e = new EmployeeWage();
+		e.employeeWage();	
 	}
 	void employeeWage() {
 		final int max_working_hrs = 100;
