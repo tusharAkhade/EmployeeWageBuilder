@@ -41,7 +41,7 @@ public class EmployeeWage {
         int working_hr = 0;
         int total_working_hr = 0;
         int monthly_total_wage = 0;
-        int daily_wage_array[] = new int[20];
+        int daily_wage_array[] = new int[days_in_month];
         for (int i = 0; i < days_in_month && total_working_hr < max_working_hrs; i++) {
             int emp_check = (int) (Math.floor(Math.random() * 10)) % 3;
             switch (emp_check) {
