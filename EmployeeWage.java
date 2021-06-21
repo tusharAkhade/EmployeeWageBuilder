@@ -1,13 +1,10 @@
 /**
- * Compute Employee wage for multiple companies
- * Note: Each Company has its own wage, number of working days
- *      and working hours per month.
- *
+ * Refactoring the EmployeeWage
+ * using seperate object for each company to calculate employee wage.
  * @author Tushar Akhade
- * @Since 15 Jun 2021
+ * @since 19 Jun 2021
  */
 
-import java.util.Scanner;
 public class EmployeeWage {
     private static final int IS_FUllTime = 1;
     private static final int IS_PARTTIME = 2;
@@ -22,18 +19,13 @@ public class EmployeeWage {
         this.days_in_month = days_in_month;
         this.wage_per_hr = wage_per_hr;
     }
+
     public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
-        System.out.print("Enter a company name : ");
-        String companyName = s.next();
-        System.out.print("Enter maximum work hours of month : ");
-        int max_working_hrs = s.nextInt();
-        System.out.print("Enter maximum days in month : ");
-        int days_in_month = s.nextInt();
-        System.out.print("Enter wage per hour : ");
-        int wage_per_hr = s.nextInt();
-        EmployeeWage e = new EmployeeWage(companyName, max_working_hrs, days_in_month, wage_per_hr);
-        e.employeeWage();
+
+        EmployeeWage e1 = new EmployeeWage("d-mart", 100, 20, 100);
+        EmployeeWage e2 = new EmployeeWage("jio-Mart", 150, 25, 110);
+        e1.employeeWage();
+        e2.employeeWage();
     }
 
     // Checking the employee attendance and paying salary based on their working hours
@@ -42,7 +34,8 @@ public class EmployeeWage {
         int total_working_hr = 0;
         int monthly_total_wage = 0;
         int daily_wage_array[] = new int[days_in_month];
-        for (int i = 0; i < days_in_month && total_working_hr < max_working_hrs; i++) {
+        int days = 0;
+        while (days < days_in_month && total_working_hr < max_working_hrs) {
             int emp_check = (int) (Math.floor(Math.random() * 10)) % 3;
             switch (emp_check) {
                 case IS_FUllTime -> {
@@ -56,14 +49,14 @@ public class EmployeeWage {
                 }
             }
             total_working_hr += working_hr;
-            daily_wage_array[i] = working_hr * wage_per_hr;
+            daily_wage_array[days] = working_hr * wage_per_hr;
+            days++;
         }
         for (int j = 0; j < days_in_month; j++) {
             int day = j + 1;
             System.out.println("Day " + day + " wage is " + daily_wage_array[j]);
             monthly_total_wage = monthly_total_wage + daily_wage_array[j];
         }
-        System.out.println("\nMonthly wage is " + monthly_total_wage);
+        System.out.println("Monthly wage for " + companyName + " : " + monthly_total_wage + "\n");
     }
-
 }
