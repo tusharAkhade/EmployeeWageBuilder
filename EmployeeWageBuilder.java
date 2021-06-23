@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /**
- * Refactor to have list of multiple companies to manage Employee wage
+ * Added daily wage along with monthly wage.
  * @author Tushar Akhade
  * @since 19 Jun 2021
  */
@@ -70,6 +70,7 @@ public class EmployeeWageBuilder implements EmpWageInterface {
         }
         for (int j = 0; j < employeeWage.days_in_month; j++) {
             int day = j + 1;
+            System.out.println("Day " + day + " wage is " + daily_wage_array[j]);
             monthly_total_wage = monthly_total_wage + daily_wage_array[j];
         }
 
